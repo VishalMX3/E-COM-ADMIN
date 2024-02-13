@@ -1,7 +1,26 @@
+import { useEffect, useState } from "react";
 import "./widgetSm.css";
 import { Visibility } from "@mui/icons-material";
+import { userRequest } from "../../requestMethods";
 
 export default function WidgetSm() {
+  const [users, setUsers] = useState("");
+  console.log("yo");
+
+  useEffect(() => {
+    const getUsers = async () => {
+      try {
+        const res = await userRequest.get("/users?new=true");
+        setUsers(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+
+      console.log(users);
+      console.log("Hey");
+    };
+    getUsers();
+  }, []);
   return (
     <div className="widgetSm">
       <span className="widgetSmTitle">New Join Members</span>
