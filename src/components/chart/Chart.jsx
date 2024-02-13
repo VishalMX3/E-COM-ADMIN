@@ -9,6 +9,7 @@ import {
 } from "recharts";
 
 export default function Chart({ title, data, dataKey, grid }) {
+  //hey
 
   return (
     <div className="chart">
