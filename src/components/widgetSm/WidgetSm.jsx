@@ -4,18 +4,17 @@ import { Visibility } from "@mui/icons-material";
 import { userRequest } from "../../requestMethods";
 
 export default function WidgetSm() {
-  const [users, setUsers] = useState("");
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const getUsers = async () => {
       try {
         const res = await userRequest.get("/users/?new=true");
         setUsers(res.data);
+        console.log(users);
       } catch (err) {
         console.log(err);
       }
-
-      console.log(users);
     };
     getUsers();
   }, []);
