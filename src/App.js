@@ -9,29 +9,113 @@ import NewUser from "./pages/newUser/NewUser";
 import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
+import Login from "./pages/login/Login";
 
 function App() {
+  const admin = JSON.parse(
+    JSON.parse(localStorage.getItem("persist:root")).user
+  ).currentUser.isAdmin;
   return (
     <Router>
-      <Topbar />
-      <div className="container">
-        <Sidebar />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
+      <Routes>
+        <Route exact path="/login" element={<Login />} />
 
-          <Route path="/users" element={<UserList />} />
+        {admin && (
+          <>
+            <Route
+              exact
+              path="/"
+              element={
+                <>
+                  <Topbar />
+                  <div className="container">
+                    <Sidebar />
+                    <Home />
+                  </div>
+                </>
+              }
+            />
 
-          <Route path="/user/:userId" element={<User />} />
+            <Route
+              path="/users"
+              element={
+                <>
+                  <Topbar />
+                  <div className="container">
+                    <Sidebar />
+                    <UserList />
+                  </div>
+                </>
+              }
+            />
 
-          <Route path="/newUser" element={<NewUser />} />
+            <Route
+              path="/user/:userId"
+              element={
+                <>
+                  <Topbar />
+                  <div className="container">
+                    <Sidebar />
+                    <User />
+                  </div>
+                </>
+              }
+            />
 
-          <Route path="/products" element={<ProductList />} />
+            <Route
+              path="/newUser"
+              element={
+                <>
+                  <Topbar />
+                  <div className="container">
+                    <Sidebar />
+                    <NewUser />
+                  </div>
+                </>
+              }
+            />
 
-          <Route path="/product/:productId" element={<Product />} />
+            <Route
+              path="/products"
+              element={
+                <>
+                  <Topbar />
+                  <div className="container">
+                    <Sidebar />
+                    <ProductList />
+                  </div>
+                </>
+              }
+            />
 
-          <Route path="/newproduct" element={<NewProduct />} />
-        </Routes>
-      </div>
+            <Route
+              path="/product/:productId"
+              element={
+                <>
+                  <Topbar />
+                  <div className="container">
+                    <Sidebar />
+                    <Product />
+                  </div>
+                </>
+              }
+            />
+
+            <Route
+              path="/newproduct"
+              element={
+                <>
+                  <Topbar />
+                  <div className="container">
+                    <Sidebar />
+                    <NewProduct />
+                  </div>
+                </>
+              }
+            />
+          </>
+        )}
+      </Routes>
     </Router>
   );
 }
