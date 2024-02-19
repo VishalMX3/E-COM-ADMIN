@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/apiCalls";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
-    login(dispatch, { userName, password });
+    await login(dispatch, { userName, password });
+
+    navigate("/");
+    window.location.reload();
   };
   return (
     <div
