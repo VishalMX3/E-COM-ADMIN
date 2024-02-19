@@ -9,14 +9,15 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isFetching } = useSelector((state) => state.user);
+  const { isFetching, error } = useSelector((state) => state.user);
 
   const handleClick = async (e) => {
     e.preventDefault();
     await login(dispatch, { userName, password });
-
-    navigate("/");
-    window.location.reload();
+    if (!error) {
+      navigate("/");
+      window.location.reload();
+    }
   };
   return (
     <div

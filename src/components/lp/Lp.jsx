@@ -1,12 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Lp = () => {
+  const { error } = useSelector((state) => state.user);
+
   return (
     <div
       style={{
         height: "100vh",
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
       }}
@@ -27,6 +31,9 @@ const Lp = () => {
           Login as Admin
         </button>
       </Link>
+      {error && (
+        <span style={{ color: "red" }}>Wrong Credentials...Plz try again</span>
+      )}
     </div>
   );
 };
