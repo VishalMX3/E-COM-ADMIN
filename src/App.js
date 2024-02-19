@@ -19,12 +19,12 @@ function App() {
   const admin = userExists
     ? JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user)
         .currentUser.isAdmin
-    : "";
+    : null;
 
   return (
     <Router>
       <Routes>
-        <Route exact path="/login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
 
         {admin && (
           <>
