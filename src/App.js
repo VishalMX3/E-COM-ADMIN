@@ -1,5 +1,6 @@
 import Sidebar from "./components/sidebar/Sidebar";
 import Topbar from "./components/topbar/Topbar";
+import Lp from "./components/lp/Lp";
 import "./App.css";
 import Home from "./pages/home/Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -23,105 +24,106 @@ function App() {
 
   return (
     <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
+      {admin === null ? (
+        <Routes>
+          <Route path="/" element={<Lp />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      ) : (
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <>
+                <Topbar />
+                <div className="container">
+                  <Sidebar />
+                  <Home />
+                </div>
+              </>
+            }
+          />
 
-        {admin && (
-          <>
-            <Route
-              exact
-              path="/"
-              element={
-                <>
-                  <Topbar />
-                  <div className="container">
-                    <Sidebar />
-                    <Home />
-                  </div>
-                </>
-              }
-            />
+          <Route
+            path="/users"
+            element={
+              <>
+                <Topbar />
+                <div className="container">
+                  <Sidebar />
+                  <UserList />
+                </div>
+              </>
+            }
+          />
 
-            <Route
-              path="/users"
-              element={
-                <>
-                  <Topbar />
-                  <div className="container">
-                    <Sidebar />
-                    <UserList />
-                  </div>
-                </>
-              }
-            />
+          <Route
+            path="/user/:userId"
+            element={
+              <>
+                <Topbar />
+                <div className="container">
+                  <Sidebar />
+                  <User />
+                </div>
+              </>
+            }
+          />
 
-            <Route
-              path="/user/:userId"
-              element={
-                <>
-                  <Topbar />
-                  <div className="container">
-                    <Sidebar />
-                    <User />
-                  </div>
-                </>
-              }
-            />
+          <Route
+            path="/newUser"
+            element={
+              <>
+                <Topbar />
+                <div className="container">
+                  <Sidebar />
+                  <NewUser />
+                </div>
+              </>
+            }
+          />
 
-            <Route
-              path="/newUser"
-              element={
-                <>
-                  <Topbar />
-                  <div className="container">
-                    <Sidebar />
-                    <NewUser />
-                  </div>
-                </>
-              }
-            />
+          <Route
+            path="/products"
+            element={
+              <>
+                <Topbar />
+                <div className="container">
+                  <Sidebar />
+                  <ProductList />
+                </div>
+              </>
+            }
+          />
 
-            <Route
-              path="/products"
-              element={
-                <>
-                  <Topbar />
-                  <div className="container">
-                    <Sidebar />
-                    <ProductList />
-                  </div>
-                </>
-              }
-            />
+          <Route
+            path="/product/:productId"
+            element={
+              <>
+                <Topbar />
+                <div className="container">
+                  <Sidebar />
+                  <Product />
+                </div>
+              </>
+            }
+          />
 
-            <Route
-              path="/product/:productId"
-              element={
-                <>
-                  <Topbar />
-                  <div className="container">
-                    <Sidebar />
-                    <Product />
-                  </div>
-                </>
-              }
-            />
-
-            <Route
-              path="/newproduct"
-              element={
-                <>
-                  <Topbar />
-                  <div className="container">
-                    <Sidebar />
-                    <NewProduct />
-                  </div>
-                </>
-              }
-            />
-          </>
-        )}
-      </Routes>
+          <Route
+            path="/newproduct"
+            element={
+              <>
+                <Topbar />
+                <div className="container">
+                  <Sidebar />
+                  <NewProduct />
+                </div>
+              </>
+            }
+          />
+        </Routes>
+      )}
     </Router>
   );
 }
