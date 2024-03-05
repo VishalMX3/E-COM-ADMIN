@@ -50,7 +50,7 @@ export default function Home() {
     <div className="home">
       <FeaturedInfo />
       <Chart
-        data={userStats}
+        data={userData}
         title="User Analytics"
         grid
         dataKey="Active User"

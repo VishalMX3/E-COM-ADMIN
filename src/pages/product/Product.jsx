@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./product.css";
 import Chart from "../../components/chart/Chart";
 import { productData } from "../../dummyData";
@@ -9,12 +9,19 @@ import { userRequest } from "../../requestMethods";
 
 export default function Product() {
   const location = useLocation();
+  const navigate = useNavigate();
+
   const productId = location.pathname.split("/")[2];
   const [pStats, setPStats] = useState([]);
 
   const product = useSelector((state) =>
     state.product.products.find((product) => product._id === productId)
   );
+
+  const handleClick = (e) => {
+    alert("Product Updated Successfull !");
+    navigate("/");
+  };
 
   const MONTHS = useMemo(
     () => [
@@ -111,7 +118,9 @@ export default function Product() {
               </label>
               <input type="file" id="file" style={{ display: "none" }} />
             </div>
-            <button className="productButton">Update</button>
+            <button onClick={handleClick} className="productButton">
+              Update
+            </button>
           </div>
         </form>
       </div>

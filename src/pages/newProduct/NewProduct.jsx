@@ -9,12 +9,14 @@ import {
 } from "firebase/storage";
 import app from "../../firebase";
 import { addProducts } from "../../redux/apiCalls";
+import { useNavigate } from "react-router-dom";
 
 export default function NewProduct() {
   const [inputs, setInputs] = useState({});
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState([]);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setInputs((prev) => {
@@ -67,6 +69,8 @@ export default function NewProduct() {
         });
       }
     );
+    alert("New Product Added Successfuly !!");
+    navigate("/products");
   };
 
   console.log(file);
