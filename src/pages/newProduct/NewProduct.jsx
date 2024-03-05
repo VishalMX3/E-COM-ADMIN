@@ -69,8 +69,8 @@ export default function NewProduct() {
         });
       }
     );
+    navigate("/");
     alert("New Product Added Successfuly !!");
-    navigate("/products");
   };
 
   console.log(file);
